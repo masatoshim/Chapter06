@@ -16,7 +16,7 @@ export default function App() {
               </div>
             </div>
             <p className={classes.postTitle}>{ post.title }</p>
-            <div className={classes.postBody}>{ post.content }</div>
+            <div className={classes.postBody} dangerouslySetInnerHTML={{ __html: post.content }} />
           </div>
         </div>
       </li>
