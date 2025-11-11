@@ -19,7 +19,7 @@ export default function DetailPage() {
               { post.categories.map((category, index) => <div className={classes.postCategory} key={`${post.id}-${index}`}>{category}</div>) }
             </div>
           </div>
-          <div className={classes.postTitle}>{ post.title }</div>
+          <h1 className={classes.postTitle}>{ post.title }</h1>
           <div className={classes.postBody} dangerouslySetInnerHTML={{ __html: post.content }} />
         </div>
       </div>
