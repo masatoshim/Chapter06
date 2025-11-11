@@ -58,3 +58,13 @@
     display: -webkit-box;
     overflow: hidden;
 }
+
+.link {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    color: #333;
+  }
+}
+
