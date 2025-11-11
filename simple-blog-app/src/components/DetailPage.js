@@ -1,10 +1,21 @@
 import classes from '../styles/Detail.module.scss'
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { posts } from '../data/posts';
 
 export default function DetailPage() {
   const { id } = useParams();
-  const post = posts.find(p => p.id === Number(id));
+
+  const [post, setPost] = useState(null);
+  
+  // APIでpostsを取得する処理をuseEffectで実行します。
+  useEffect(() => {
+    const fetcher = async () => {
+      const res = await fetch(`https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts/${id}`);
+      const data = await res.json();
+      setPost(data.post);
+    };
+    fetcher();
+  }, []);
 
   if (!post) return <div>投稿が見つかりません</div>;
 
