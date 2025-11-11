@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import classes from './styles/Home.module.scss'
+import { posts } from './data/posts.js';
 
-function App() {
+export default function App() {
+
+  const postInfo = posts.map((post) => {
+    return (
+      <li className={classes.list} key={post.id}>
+        <div className={classes.post}>
+          <div>
+            <div className={classes.postInfo}>
+              <div className={classes.postDate}>{ new Date(post.createdAt).toLocaleDateString('ja-JP') }</div>
+              <div className={classes.postCategories}>
+                {post.categories.map((category) => <div className={classes.postCategory}>{category}</div>)}
+              </div>
+            </div>
+            <p className={classes.postTitle}>{ post.title }</p>
+            <div className={classes.postBody} dangerouslySetInnerHTML={{ __html: post.content }} />
+          </div>
+        </div>
+      </li>
+    );
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className={classes.container}>
+        <ul>{postInfo}</ul>
+      </div>
+    </>
   );
 }
-
-export default App;
