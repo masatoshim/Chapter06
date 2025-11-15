@@ -1,8 +1,26 @@
 import classes from '../styles/Home.module.scss'
-import { posts } from '../data/posts.js';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
+  const [posts, setPosts] = useState([]);
+  const [fetched, setFetched] = useState(false);
+
+  // APIでpostsを取得する処理をuseEffectで実行します。
+  useEffect(() => {
+    const fetcher = async () => {
+      setFetched(false);
+      const res = await fetch("https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts");
+      const data = await res.json();
+      setPosts(data.posts);
+      setFetched(true);
+    };
+    fetcher();
+  }, []);
+
+  if (!fetched) return <div>読み込み中...</div>;
+  if (!posts) return <div>投稿が見つかりません</div>;
+
   return (
     <>
       <div className={classes.container}>
