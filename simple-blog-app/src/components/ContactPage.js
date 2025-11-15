@@ -42,39 +42,41 @@ export default function ContactPage() {
     <div className={classes.container}>
       <h1 className={classes.title}>問合わせフォーム</h1>
       <form onSubmit={handleSubmit(onsubmit)} noValidate>
-        <div className={classes.parameter}>
-          <label htmlFor="name" className={classes.parameterTitle}>お名前</label>
-          <div className={classes.wFull}>
-            <input id="name" type="text" className={classes.inputTypeText}
-              {...register('name')}
-              />
-            <div className={classes.errorText}>{errors.name?.message}</div>
+        <fieldset disabled={isSubmitting}>
+          <div className={classes.parameter}>
+            <label htmlFor="name" className={classes.parameterTitle}>お名前</label>
+            <div className={classes.wFull}>
+              <input id="name" type="text" className={classes.inputTypeText}
+                {...register('name')}
+                />
+              <div className={classes.errorText}>{errors.name?.message}</div>
+            </div>
           </div>
-        </div>
-        <div className={classes.parameter}>
-          <label htmlFor="email" className={classes.parameterTitle}>メールアドレス</label>
-          <div className={classes.wFull}>
-            <input id="email" type="email" className={classes.inputTypeText}
-              {...register('email')} />
-            <div className={classes.errorText}>{errors.email?.message}</div>
+          <div className={classes.parameter}>
+            <label htmlFor="email" className={classes.parameterTitle}>メールアドレス</label>
+            <div className={classes.wFull}>
+              <input id="email" type="email" className={classes.inputTypeText}
+                {...register('email')} />
+              <div className={classes.errorText}>{errors.email?.message}</div>
+            </div>
           </div>
-        </div>
-        <div className={classes.parameter}>
-          <label htmlFor="message" className={classes.parameterTitle}>本文</label>
-          <div className={classes.wFull}>
-            <textarea id="message" rows="8" className={classes.inputTypeTextArea}
-              {...register('message')} />
-            <div className={classes.errorText}>{errors.message?.message}</div>
+          <div className={classes.parameter}>
+            <label htmlFor="message" className={classes.parameterTitle}>本文</label>
+            <div className={classes.wFull}>
+              <textarea id="message" rows="8" className={classes.inputTypeTextArea}
+                {...register('message')} />
+              <div className={classes.errorText}>{errors.message?.message}</div>
+            </div>
           </div>
-        </div>
-        <div className={classes.centerRow}>
-          <button type="submit" disabled={isSubmitting} className={classes.submitButton}>
-            送信
-          </button>
-          <button type="button" onClick={() => reset()} className={classes.clearButton}>
-            クリア
-          </button>
-        </div>
+          <div className={classes.centerRow}>
+            <button type="submit" className={classes.submitButton}>
+              送信
+            </button>
+            <button type="button" onClick={() => reset()} className={classes.clearButton}>
+              クリア
+            </button>
+          </div>
+        </fieldset>
       </form>
     </div>
   );
