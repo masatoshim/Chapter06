@@ -18,7 +18,7 @@ export default function DetailPage() {
       setFetched(true);
     };
     fetcher();
-  }, []);
+  }, [id]);
 
   if (!fetched) return <div>読み込み中...</div>;
   if (!post) return <div>投稿が見つかりません</div>;
@@ -26,7 +26,7 @@ export default function DetailPage() {
   return (
     <div className={classes.container}>
       <div className={classes.post}>
-        <div className={classes.postImage}><img src={ post.thumbnailUrl } /></div>
+        <div className={classes.postImage}><img src={ post.thumbnailUrl } alt="" /></div>
         <div className={classes.postContent}>
           <div className={classes.postInfo}>
             <div className={classes.postDate}>{ new Date(post.createdAt).toLocaleDateString('ja-JP') }</div>
